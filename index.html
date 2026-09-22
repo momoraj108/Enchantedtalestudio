@@ -64,7 +64,6 @@
             color: #c91038; padding: 7px 14px; border-radius: 20px; font-size: 0.82rem; text-decoration: none; font-weight: 800;
         }
 
-        /* Full Page Reader Layout */
         #homeView { display: block; }
         #readerView { display: none; min-height: 100vh; padding: 25px 16px 80px; position: relative; z-index: 5; }
         .reader-container {
@@ -116,151 +115,152 @@
             <div class="stories-grid">
                 <!-- Card 11 -->
                 <div class="story-card">
-                    <div>
-                        <div class="card-top">
-                            <span class="card-icon">🖼️</span>
-                            <span class="card-tag">Dark Fairytale</span>
-                        </div>
-                        <h2>The Cursed Portrait of Ravenwood Castle</h2>
-                        <p>They warned Lady Vivienne never to uncover the painting in the west wing after sunset. But at midnight, she heard footsteps coming from inside the frame...</p>
-                    </div>
+                    <div class="card-top"><span class="card-icon">🖼️</span><span class="card-tag">Dark Fairytale</span></div>
+                    <h2>The Cursed Portrait of Ravenwood Castle</h2>
+                    <p>They warned Lady Vivienne never to uncover the painting in the west wing after sunset. But at midnight, she heard footsteps coming from inside the frame...</p>
                     <div class="card-actions">
-                        <button class="read-btn" onclick="openStory(11)">Read Story ✨</button>
+                        <button type="button" class="read-btn" onclick="showStory(11)">Read Story ✨</button>
                         <a href="https://pinterest.com/pin/create/button/?description=The%20Cursed%20Portrait%20of%20Ravenwood%20Castle" target="_blank" class="pin-save-btn">📌 Save</a>
+                    </div>
+                    <div id="full-text-11" style="display:none;">
+                        <div class="meta-tag">Dark Fairytale</div>
+                        <div class="meta-title">🖼️ The Cursed Portrait of Ravenwood Castle</div>
+                        <div class="meta-body">For three centuries, the west gallery of Ravenwood Castle remained bolted shut. The keeper handed young Lady Vivienne the key with trembling fingers: "Explore as you please, my lady, but never remove the velvet shroud from the west gallery portrait after sunset."
+
+On her seventh night, rain lashed against the gothic windows. In the silence, Vivienne heard faint fingernails tapping against canvas: Tap. Tap. Tap.
+
+Gripping a silver candlestick, she crept upstairs. Drawn by an irresistible urge, she seized the velvet drape and pulled it down. The painting revealed a breathtaking countess in mourning lace standing before an iron gate.
+
+Vivienne recoiled in horror: the painted figure was clutching the exact silver candlestick Vivienne held in her hand. Suddenly, the painted flame flickered out—and in that instant, Vivienne's own candle died, plunging her into pitch blackness.
+
+A voice whispered in her ear: "Thank you for taking my place."
+
+Vivienne struck a match. The countess was gone from the canvas. In her place stood Vivienne, trapped forever behind the painted iron bars, as the real Countess Lenore slipped into the rainy night, alive once more.</div>
                     </div>
                 </div>
 
                 <!-- Card 19 -->
                 <div class="story-card">
-                    <div>
-                        <div class="card-top">
-                            <span class="card-icon">❄️</span>
-                            <span class="card-tag">Classic Fairytale</span>
-                        </div>
-                        <h2>The Frost Queen’s Music Box</h2>
-                        <p>Whoever opened the ivory music box heard a melody so sweet their heart froze forever. Clara carried an ember from her home hearth to the ice throne...</p>
-                    </div>
+                    <div class="card-top"><span class="card-icon">❄️</span><span class="card-tag">Classic Fairytale</span></div>
+                    <h2>The Frost Queen’s Music Box</h2>
+                    <p>Whoever opened the ivory music box heard a melody so sweet their heart froze forever. Clara carried an ember from her home hearth to the ice throne...</p>
                     <div class="card-actions">
-                        <button class="read-btn" onclick="openStory(19)">Read Story ✨</button>
+                        <button type="button" class="read-btn" onclick="showStory(19)">Read Story ✨</button>
                         <a href="https://pinterest.com/pin/create/button/?description=The%20Frost%20Queens%20Music%20Box" target="_blank" class="pin-save-btn">📌 Save</a>
+                    </div>
+                    <div id="full-text-19" style="display:none;">
+                        <div class="meta-tag">Classic Fairytale</div>
+                        <div class="meta-title">❄️ The Frost Queen’s Music Box</div>
+                        <div class="meta-body">An unnatural winter had frozen the kingdom for eighteen months. Legends spoke of the Frost Queen atop Glacier Peak who kept the spirit of Spring trapped inside an ivory music box.
+
+Clara, a woodcutter's daughter, climbed the icy summit carrying only a clay pot with a living ember from her family's hearth. Reaching the ice throne, she stood before the frozen queen.
+
+"Turn back, mortal," the Queen crackled. "Touch the box and the frost melody will stop your heart."
+
+"I did not come to fight," Clara whispered, placing the clay pot at her feet. "I brought you warmth. You froze the world because someone broke your heart, but warmth is not an enemy—it is an invitation to heal."
+
+A single warm tear slipped from the Queen's eye onto the ivory box. The crystal key clicked, playing a glorious song of blooming valleys. The glacier melted into clear streams, Spring returned, and the Queen's icy crown blossomed into forget-me-nots.</div>
                     </div>
                 </div>
 
                 <!-- Card 1 -->
                 <div class="story-card">
-                    <div>
-                        <div class="card-top">
-                            <span class="card-icon">🌿</span>
-                            <span class="card-tag">Fairy Tale</span>
-                        </div>
-                        <h2>The Weaver and the Whispering Willow</h2>
-                        <p>The dying tree whispered into the wind: 'I have lost my heart-string.' Julian sat at his loom with starlight thread to weave a soul back to life.</p>
-                    </div>
+                    <div class="card-top"><span class="card-icon">🌿</span><span class="card-tag">Fairy Tale</span></div>
+                    <h2>The Weaver and the Whispering Willow</h2>
+                    <p>The dying tree whispered into the wind: 'I have lost my heart-string.' Julian sat at his loom with starlight thread to weave a soul back to life.</p>
                     <div class="card-actions">
-                        <button class="read-btn" onclick="openStory(1)">Read Story ✨</button>
+                        <button type="button" class="read-btn" onclick="showStory(1)">Read Story ✨</button>
                         <a href="https://pinterest.com/pin/create/button/?description=The%20Weaver%20and%20the%20Whispering%20Willow" target="_blank" class="pin-save-btn">📌 Save</a>
+                    </div>
+                    <div id="full-text-1" style="display:none;">
+                        <div class="meta-tag">Fairy Tale</div>
+                        <div class="meta-title">🌿 The Weaver and the Whispering Willow</div>
+                        <div class="meta-body">In a quiet valley hidden between mist-covered hills, old weaver Julian owned an ancient loom carved from enchanted oak. One spring, the sacred weeping willow, which had shaded the grove for centuries, began to wither into pale gray dust.
+
+Kneeling beside its bark, Julian heard the tree whisper: "The melody of the spring stream has frozen. Without song, my roots must die."
+
+Returning to his loom beneath the midnight stars, Julian gathered threads of golden dawn, silver moonlight, and the first dew of April. With gentle hands, he wove the essence of birdsong and rain into a single shimmering tapestry.
+
+At sunrise, he wrapped the tapestry around the willow. A brilliant emerald luminescence surged through the wood. Fresh shoots burst from the boughs, the brook sang with crystal water, and the valley bloomed alive once more—proving that art is a sacred conversation with the world.</div>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
                 <div class="story-card">
-                    <div>
-                        <div class="card-top">
-                            <span class="card-icon">🔭</span>
-                            <span class="card-tag">Dark Tale</span>
-                        </div>
-                        <h2>The Star-Gazer's Secret</h2>
-                        <p>For 40 years, he tracked an obsidian star missing from every map. Tonight, it pulsed with violet fire, heralding the erasure of human memory.</p>
-                    </div>
+                    <div class="card-top"><span class="card-icon">🔭</span><span class="card-tag">Dark Tale</span></div>
+                    <h2>The Star-Gazer's Secret</h2>
+                    <p>For 40 years, he tracked an obsidian star missing from every map. Tonight, it pulsed with violet fire, heralding the erasure of human memory.</p>
                     <div class="card-actions">
-                        <button class="read-btn" onclick="openStory(2)">Read Story ✨</button>
+                        <button type="button" class="read-btn" onclick="showStory(2)">Read Story ✨</button>
                         <a href="https://pinterest.com/pin/create/button/?description=The%20Star%20Gazers%20Secret" target="_blank" class="pin-save-btn">📌 Save</a>
+                    </div>
+                    <div id="full-text-2" style="display:none;">
+                        <div class="meta-tag">Dark Tale</div>
+                        <div class="meta-title">🔭 The Star-Gazer's Secret</div>
+                        <div class="meta-body">High upon the jagged cliffs, Professor Alistair watched the heavens through his brass telescope. For forty years, he kept secret charts of the 'Sovereign of Ashes'—a dark star absent from celestial maps, said to bring an eclipse of all human memories whenever a comet crossed its path.
+
+Tonight, the obsidian star flared violet. A shadow began creeping over the slumbering village below.
+
+Alistair acted without hesitation. Taking an ancient compass and midnight ink, he inscribed a protective talisman on vellum, pouring all his love and cherished memories into each sacred rune.
+
+He placed the glowing parchment into the telescope's focus. A beam of emerald light pierced the night clouds, shattering the comet's shadow. The village woke in peace, never knowing a silent stargazer had saved the world's memories.</div>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="story-card">
-                    <div>
-                        <div class="card-top">
-                            <span class="card-icon">🕰️</span>
-                            <span class="card-tag">Classic Tale</span>
-                        </div>
-                        <h2>The Clockmaker's Heart</h2>
-                        <p>A weeping girl brought him a frozen silver locket. To make it tick again, the master horologist had to sacrifice his own most precious memory.</p>
-                    </div>
+                    <div class="card-top"><span class="card-icon">🕰️</span><span class="card-tag">Classic Tale</span></div>
+                    <h2>The Clockmaker's Heart</h2>
+                    <p>A weeping girl brought him a frozen silver locket. To make it tick again, the master horologist had to sacrifice his own most precious memory.</p>
                     <div class="card-actions">
-                        <button class="read-btn" onclick="openStory(3)">Read Story ✨</button>
+                        <button type="button" class="read-btn" onclick="showStory(3)">Read Story ✨</button>
                         <a href="https://pinterest.com/pin/create/button/?description=The%20Clockmakers%20Heart" target="_blank" class="pin-save-btn">📌 Save</a>
                     </div>
+                    <div id="full-text-3" style="display:none;">
+                        <div class="meta-tag">Classic Tale</div>
+                        <div class="meta-title">🕰️ The Clockmaker's Heart</div>
+                        <div class="meta-body">Master Eldridge crafted the finest timepieces in the city, yet his own days ticked by in cold solitude. One snowy night, a trembling girl knocked upon his door holding a broken silver locket.
+
+"Sir, it belonged to my mother," she wept. "It stopped the hour she fell ill. The doctors say only hope can restore her, and I thought if it chimed again, she might wake."
+
+Eldridge examined the frozen gears. The mainspring was shattered; only an escapement forged with selfless love could revive it. Without hesitation, Eldridge melted down his own cherished heirloom—a mechanical butterfly gifted by his late wife decades ago.
+
+He worked until dawn, shaping a new cog. When the locket ticked and chimed its sweet melody, the girl smiled through tears. As she ran home, Eldridge noticed that his quiet workshop felt empty no longer—his own heart had begun to beat again.</div>
+                    </div>
                 </div>
 
-                <!-- Card 12 -->
+                <!-- Card 4 -->
                 <div class="story-card">
-                    <div>
-                        <div class="card-top">
-                            <span class="card-icon">⏳</span>
-                            <span class="card-tag">Enchanted Mystery</span>
-                        </div>
-                        <h2>The Clock That Stole the 13th Hour</h2>
-                        <p>Every clock strikes twelve. But in Master Klaus's attic, the grandfather clock struck thirteen—and her shadow stood upright on its own...</p>
-                    </div>
+                    <div class="card-top"><span class="card-icon">👑</span><span class="card-tag">Princess Tale</span></div>
+                    <h2>Princess Amara & the Midnight Owl</h2>
+                    <p>A snow-white owl dropped a sealed lavender letter onto her balcony: 'The crown you wear is hollow until you brave the haunted woods alone.'</p>
                     <div class="card-actions">
-                        <button class="read-btn" onclick="openStory(12)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=The%20Clock%20That%20Stole%20the%2013th%20Hour" target="_blank" class="pin-save-btn">📌 Save</a>
+                        <button type="button" class="read-btn" onclick="showStory(4)">Read Story ✨</button>
+                        <a href="https://pinterest.com/pin/create/button/?description=Princess%20Amara" target="_blank" class="pin-save-btn">📌 Save</a>
+                    </div>
+                    <div id="full-text-4" style="display:none;">
+                        <div class="meta-tag">Princess Tale</div>
+                        <div class="meta-title">👑 Princess Amara & the Midnight Owl</div>
+                        <div class="meta-body">Princess Amara of the Silver Hollow cared little for courtly balls. Her joy lay in wandering the royal gardens after twilight when moon-lilies bloomed.
+
+One evening, a white owl with sapphire eyes landed on her balcony, bearing an envelope sealed in lavender silk. The message spoke of a forgotten grove where ancient guardians were fading under a shadow of despair.
+
+Wrapping herself in a velvet cloak, Amara followed the owl into the deep forest. At the grove's center lay a weeping dryad pinned beneath fallen silver branches. Amara used no weapons; she spoke gentle words of comfort and carefully cleared the debris with bare hands.
+
+As the dryad was freed, a shimmering azure mist filled the air. The owl transformed into a spirit guardian, bowing deeply: "True royalty lies not in crowns, but in courage born of kindness."</div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Full-Page Reading View -->
-    <div id="readerView">
-        <div class="reader-container">
-            <div class="reader-nav-bar">
-                <button class="back-home-btn" onclick="goToHomeView()">← Back to All Stories</button>
-                <span class="card-tag" id="readerTag">Story</span>
-            </div>
-            <h1 class="reader-story-title" id="readerTitle">Story Title</h1>
-            <div class="reader-story-text" id="readerBody"></div>
-            <div class="reader-footer">
-                <button class="back-home-btn" onclick="goToHomeView()">← Back to Stories</button>
-                <a id="readerPinBtn" href="#" target="_blank" class="pinterest-top-btn" style="margin-top:0;">📌 Save on Pinterest</a>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 Enchanted Tale Studio • Handcrafted for Dreamers & Story Lovers ✨</p>
-    </footer>
-
-    <script>
-        const storyContents = {
-            11: {
-                title: "🖼️ The Cursed Portrait of Ravenwood Castle",
-                tag: "Dark Fairytale",
-                text: "For three centuries, the west gallery of Ravenwood Castle remained bolted shut. The keeper handed young Lady Vivienne the key with trembling fingers: 'Explore as you please, my lady, but never remove the velvet shroud from the west gallery portrait after sunset.'\n\nOn her seventh night, rain lashed against the gothic windows. In the silence, Vivienne heard faint fingernails tapping against canvas: Tap. Tap. Tap.\n\nGripping a silver candlestick, she crept upstairs. Drawn by an irresistible urge, she seized the velvet drape and pulled it down. The painting revealed a breathtaking countess in mourning lace standing before an iron gate.\n\nVivienne recoiled in horror: the painted figure was clutching the exact silver candlestick Vivienne held in her hand. Suddenly, the painted flame flickered out—and in that instant, Vivienne's own candle died, plunging her into pitch blackness.\n\nA voice whispered in her ear: 'Thank you for taking my place.'\n\nVivienne struck a match. The countess was gone from the canvas. In her place stood Vivienne, trapped forever behind the painted iron bars, as the real Countess Lenore slipped into the rainy night, alive once more."
-            },
-            19: {
-                title: "❄️ The Frost Queen’s Music Box",
-                tag: "Classic Fairytale",
-                text: "An unnatural winter had frozen the kingdom for eighteen months. Legends spoke of the Frost Queen atop Glacier Peak who kept the spirit of Spring trapped inside an ivory music box.\n\nClara, a woodcutter's daughter, climbed the icy summit carrying only a clay pot with a living ember from her family's hearth. Reaching the ice throne, she stood before the frozen queen.\n\n'Turn back, mortal,' the Queen crackled. 'Touch the box and the frost melody will stop your heart.'\n\n'I did not come to fight,' Clara whispered, placing the clay pot at her feet. 'I brought you warmth. You froze the world because someone broke your heart, but warmth is not an enemy—it is an invitation to heal.'\n\nA single warm tear slipped from the Queen's eye onto the ivory box. The crystal key clicked, playing a glorious song of blooming valleys. The glacier melted into clear streams, Spring returned, and the Queen's icy crown blossomed into forget-me-nots."
-            },
-            1: {
-                title: "🌿 The Weaver and the Whispering Willow",
-                tag: "Fairy Tale",
-                text: "In a quiet valley hidden between mist-covered hills, old weaver Julian owned an ancient loom carved from enchanted oak. One spring, the sacred weeping willow, which had shaded the grove for centuries, began to wither into pale gray dust.\n\nKneeling beside its bark, Julian heard the tree whisper: 'The melody of the spring stream has frozen. Without song, my roots must die.'\n\nReturning to his loom beneath the midnight stars, Julian gathered threads of golden dawn, silver moonlight, and the first dew of April. With gentle hands, he wove the essence of birdsong and rain into a single shimmering tapestry.\n\nAt sunrise, he wrapped the tapestry around the willow. A brilliant emerald luminescence surged through the wood. Fresh shoots burst from the boughs, the brook sang with crystal water, and the valley bloomed alive once more—proving that art is a sacred conversation with the world."
-            },
-            2: {
-                title: "🔭 The Star-Gazer's Secret",
-                tag: "Dark Tale",
-                text: "High upon the jagged cliffs, Professor Alistair watched the heavens through his brass telescope. For forty years, he kept secret charts of the 'Sovereign of Ashes'—a dark star absent from celestial maps, said to bring an eclipse of all human memories whenever a comet crossed its path.\n\nTonight, the obsidian star flared violet. A shadow began creeping over the slumbering village below.\n\nAlistair acted without hesitation. Taking an ancient compass and midnight ink, he inscribed a protective talisman on vellum, pouring all his love and cherished memories into each sacred rune.\n\nHe placed the glowing parchment into the telescope's focus. A beam of emerald light pierced the night clouds, shattering the comet's shadow. The village woke in peace, never knowing a silent stargazer had saved the world's memories."
-            },
-            3: {
-                title: "🕰️ The Clockmaker's Heart",
-                tag: "Classic Tale",
-                text: "Master Eldridge crafted the finest timepieces in the city, yet his own days ticked by in cold solitude. One snowy night, a trembling girl knocked upon his door holding a broken silver locket.\n\n'Sir, it belonged to my mother,' she wept. 'It stopped the hour she fell ill. The doctors say only hope can restore her, and I thought if it chimed again, she might wake.'\n\nEldridge examined the frozen gears. The mainspring was shattered; only an escapement forged with selfless love could revive it. Without hesitation, Eldridge melted down his own cherished heirloom—a mechanical butterfly gifted by his late wife decades ago.\n\nHe worked until dawn, shaping a new cog. When the locket ticked and chimed its sweet melody, the girl smiled through tears. As she ran home, Eldridge noticed that his quiet workshop felt empty no longer—his own heart had begun to beat again."
-            },
-            12: {
-                title: "⏳ The Clock That Stole the 13th Hour",
-                tag: "Enchanted Mystery",
-                text: "In the clockmaker's town of Veldor, apprentice Clara inherited an attic clock carved from black walnut and bone, bearing thirteen golden numerals. On his deathbed, her master warned: 'If the hands ever reach thirteen, run.'\n\nDuring a moonless midnight, every ticking clock in the shop died into silence. From the attic came a deep chime: Gong... twelve... thirteen!\n\nGravity warped. Clara's shadow peeled itself off the floor, rising upright with glowing white eyes. Around the room, shadows of furniture detached like living silk: 'The Thirteenth Hour is ours, mortal!'\n\nRemembering the ancient rule of horology—that no spell can survive without mechanical balance—Clara raced upstairs while icy hands clawed at her shoulders. Just as the hand hit the thirteenth stroke, she jammed a steel tuning fork into the escapement gear.\n\nThe clock face shattered into silver dust. The shadows snapped back onto the floor, pinned harmlessly beneath the furniture. Dawn broke over the roofs, yet on Clara's
+                <!-- Card 5 -->
+                <div class="story-card">
+                    <div class="card-top"><span class="card-icon">🏮</span><span class="card-tag">Fairy Tale</span></div>
+                    <h2>The Girl and the Firefly Lantern</h2>
+                    <p>Her woven lantern held thousands of golden fireflies. But during the great autumn gale, she had to choose: save herself or shelter the enchanted swarm.</p>
+                    <div class="card-actions">
+                        <button type="button" class="read-btn" onclick="showStory(5)">Read Story ✨</button>
+                        <a href="https://pinterest.com/pin/create/button/?description=Firefly%20Lantern" target="_blank" class="pin-save-btn">📌 Save</a>
+                    </div>
+                    <div id="full-text-5" style="display:none;">
+                        <div class="meta-tag">Fairy Tale</div>
+                        <div class="meta-title">🏮 The Girl and the Firefly Lantern</div>
+                        <div class="meta-body">At the edge of the twilight hills, young Mira wove bamboo lanterns painted with watercolors of cherry blossoms. On moonless nights, hundreds of glowing fireflies gathe
