@@ -5,364 +5,328 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enchanted Tale Studio | Fairytales, Dark Stories & Poems</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Nunito:wght@600;700;800&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: 'Nunito', sans-serif;
-            background: linear-gradient(180deg, #fba7c7 0%, #f7bed7 35%, #fedbe8 70%, #fff0f6 100%);
-            background-attachment: fixed;
-            color: #3b182d;
-            min-height: 100vh;
-            line-height: 1.7;
+            font-family:'Nunito',sans-serif;
+            background:linear-gradient(180deg,#fba7c7 0%,#f7bed7 35%,#fedbe8 70%,#fff0f6 100%);
+            background-attachment:fixed; color:#3b182d; min-height:100vh; line-height:1.7;
         }
         .sparkle-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
-            background: radial-gradient(1.5px 1.5px at 15% 18%, #fff, transparent),
-                        radial-gradient(2px 2px at 80% 25%, #fff, transparent),
-                        radial-gradient(3px 3px at 45% 12%, rgba(255,255,255,0.9), transparent);
-            background-size: 300px 300px; opacity: 0.8; z-index: 0;
+            position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none;
+            background:radial-gradient(1.5px 1.5px at 15% 18%,#fff,transparent),
+                       radial-gradient(2px 2px at 80% 25%,#fff,transparent),
+                       radial-gradient(3px 3px at 45% 12%,rgba(255,255,255,0.9),transparent);
+            background-size:300px 300px; opacity:0.8; z-index:0;
         }
-        header { position: relative; z-index: 2; text-align: center; padding: 45px 16px 20px; }
-        h1 {
-            font-family: 'Cinzel Decorative', cursive; color: #881e4e;
-            font-size: clamp(1.8rem, 5vw, 2.8rem); text-shadow: 0 0 20px rgba(255,255,255,0.9); margin-bottom: 6px;
-        }
-        .header-sub { font-family: 'Great Vibes', cursive; font-size: 2.1rem; color: #b82361; margin-bottom: 12px; }
-        .header-desc {
-            max-width: 650px; margin: 0 auto; color: #63334e; font-size: 1rem; font-weight: 700;
-            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px); padding: 10px 20px; border-radius: 30px;
-        }
-        .pinterest-top-btn {
-            display: inline-block; margin-top: 18px; padding: 10px 24px; border-radius: 30px;
-            background: linear-gradient(135deg, #e60023, #ff4071); color: #fff; text-decoration: none;
-            font-weight: 800; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(230,0,35,0.3);
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px 16px 80px; position: relative; z-index: 2; }
-        .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .story-card {
-            background: rgba(255, 255, 255, 0.85); border: 1.5px solid rgba(255, 182, 193, 0.8);
-            border-radius: 24px; padding: 24px 20px; backdrop-filter: blur(12px);
-            box-shadow: 0 8px 25px rgba(184, 50, 106, 0.12); display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .card-icon { font-size: 2.4rem; }
-        .card-tag {
-            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.2px; padding: 4px 12px;
-            border-radius: 16px; background: rgba(244, 114, 182, 0.22); color: #881e4e; font-weight: 800;
-        }
-        .story-card h2 { font-family: 'Cinzel Decorative', cursive; font-size: 1.25rem; color: #b8326a; margin-bottom: 10px; }
-        .story-card p { color: #63334e; font-size: 0.92rem; line-height: 1.6; margin-bottom: 16px; }
-        .card-actions { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
-        .read-btn {
-            background: linear-gradient(135deg, #f472b6, #db2777); color: #fff; padding: 9px 20px;
-            border-radius: 25px; font-weight: 800; font-size: 0.88rem; cursor: pointer; border: none;
-        }
-        .pin-save-btn {
-            background: rgba(230,0,35,0.1); border: 1px solid rgba(230,0,35,0.4);
-            color: #c91038; padding: 7px 14px; border-radius: 20px; font-size: 0.82rem; text-decoration: none; font-weight: 800;
-        }
-
-        #homeView { display: block; }
-        #readerView { display: none; min-height: 100vh; padding: 25px 16px 80px; position: relative; z-index: 5; }
-        .reader-container {
-            max-width: 820px; margin: 0 auto; background: rgba(255, 255, 255, 0.95);
-            border: 1.5px solid rgba(255, 182, 193, 0.8); border-radius: 26px; padding: 35px 24px 45px;
-            box-shadow: 0 15px 40px rgba(184, 50, 106, 0.16);
-        }
-        .reader-nav-bar {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
-            padding-bottom: 15px; border-bottom: 1.5px solid rgba(244, 114, 182, 0.3);
-        }
-        .back-home-btn {
-            background: #fff; border: 1.5px solid #f472b6; color: #b8326a; padding: 8px 18px;
-            border-radius: 25px; font-weight: 800; font-size: 0.88rem; cursor: pointer;
-        }
-        .reader-story-title {
-            font-family: 'Cinzel Decorative', cursive; color: #881e4e;
-            font-size: clamp(1.5rem, 4vw, 2.2rem); text-align: center; margin-bottom: 22px;
-        }
-        .reader-story-text {
-            color: #2b1122; font-family: 'Playfair Display', serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.22rem); line-height: 2.15; white-space: pre-line; text-align: justify;
-        }
-        .reader-footer {
-            margin-top: 35px; padding-top: 20px; border-top: 1.5px solid rgba(244, 114, 182, 0.3);
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-        }
-        footer {
-            text-align: center; padding: 35px 20px; color: #8c3f68; font-size: 0.92rem; font-weight: 700;
-            background: rgba(255, 255, 255, 0.45); border-top: 1px solid rgba(255, 255, 255, 0.4);
-            position: relative; z-index: 2;
-        }
+        header { position:relative; z-index:2; text-align:center; padding:45px 16px 20px; }
+        h1 { font-family:'Cinzel Decorative',cursive; color:#881e4e; font-size:clamp(1.8rem,5vw,2.8rem); text-shadow:0 0 20px rgba(255,255,255,0.9); margin-bottom:6px; }
+        .header-sub { font-family:'Great Vibes',cursive; font-size:2.1rem; color:#b82361; margin-bottom:12px; }
+        .header-desc { max-width:650px; margin:0 auto; color:#63334e; font-size:1rem; font-weight:700; background:rgba(255,255,255,0.6); backdrop-filter:blur(8px); padding:10px 20px; border-radius:30px; }
+        .pinterest-top-btn { display:inline-block; margin-top:18px; padding:10px 24px; border-radius:30px; background:linear-gradient(135deg,#e60023,#ff4071); color:#fff; text-decoration:none; font-weight:800; font-size:0.9rem; box-shadow:0 4px 15px rgba(230,0,35,0.3); }
+        .container { max-width:1100px; margin:0 auto; padding:20px 16px 80px; position:relative; z-index:2; }
+        .stories-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+        .story-card { background:rgba(255,255,255,0.85); border:1.5px solid rgba(255,182,193,0.8); border-radius:24px; padding:24px 20px; backdrop-filter:blur(12px); box-shadow:0 8px 25px rgba(184,50,106,0.12); display:flex; flex-direction:column; justify-content:space-between; }
+        .card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+        .card-icon { font-size:2.4rem; }
+        .card-tag { font-size:0.72rem; text-transform:uppercase; letter-spacing:1.2px; padding:4px 12px; border-radius:16px; background:rgba(244,114,182,0.22); color:#881e4e; font-weight:800; }
+        .story-card h2 { font-family:'Cinzel Decorative',cursive; font-size:1.25rem; color:#b82361; margin-bottom:10px; }
+        .story-card p { color:#63334e; font-size:0.92rem; line-height:1.6; margin-bottom:16px; }
+        .card-actions { display:flex; justify-content:space-between; align-items:center; margin-top:auto; }
+        .read-btn { background:linear-gradient(135deg,#f472b6,#db2777); color:#fff; padding:9px 20px; border-radius:25px; font-weight:800; font-size:0.88rem; cursor:pointer; border:none; }
+        .pin-save-btn { background:rgba(230,0,35,0.1); border:1px solid rgba(230,0,35,0.4); color:#c91038; padding:7px 14px; border-radius:20px; font-size:0.82rem; text-decoration:none; font-weight:800; }
+        #homeView { display:block; }
+        #readerView { display:none; min-height:100vh; padding:25px 16px 80px; position:relative; z-index:5; }
+        .reader-container { max-width:820px; margin:0 auto; background:rgba(255,255,255,0.95); border:1.5px solid rgba(255,182,193,0.8); border-radius:26px; padding:35px 24px 45px; box-shadow:0 15px 40px rgba(184,50,106,0.16); }
+        .reader-nav-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:25px; padding-bottom:15px; border-bottom:1.5px solid rgba(244,114,182,0.3); }
+        .back-home-btn { background:#fff; border:1.5px solid #f472b6; color:#b8326a; padding:8px 18px; border-radius:25px; font-weight:800; font-size:0.88rem; cursor:pointer; }
+        .reader-story-title { font-family:'Cinzel Decorative',cursive; color:#881e4e; font-size:clamp(1.5rem,4vw,2.2rem); text-align:center; margin-bottom:22px; }
+        .reader-story-text { color:#2b1122; font-family:'Playfair Display',serif; font-size:clamp(1.1rem,2.5vw,1.22rem); line-height:2.15; white-space:pre-line; text-align:justify; }
+        .reader-footer { margin-top:35px; padding-top:20px; border-top:1.5px solid rgba(244,114,182,0.3); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+        footer { text-align:center; padding:35px 20px; color:#8c3f68; font-size:0.92rem; font-weight:700; background:rgba(255,255,255,0.45); border-top:1px solid rgba(255,255,255,0.4); position:relative; z-index:2; }
     </style>
 </head>
 <body>
     <div class="sparkle-canvas"></div>
-
     <div id="homeView">
         <header>
             <h1>✨ Enchanted Tale Studio ✨</h1>
             <div class="header-sub">Fairytales • Dark Stories • Classic Poems</div>
             <p class="header-desc">✨ Magical fairytales, dark stories & classic poems 🌙 Vintage illustrations & enchanted tales for dreamers.</p>
-            <a href="https://pinterest.com/enchantedtalesstudio" target="_blank" class="pinterest-top-btn">
-                📌 Follow @enchantedtalesstudio on Pinterest
-            </a>
+            <a href="https://pinterest.com/enchantedtalesstudio" target="_blank" class="pinterest-top-btn">📌 Follow @enchantedtalesstudio on Pinterest</a>
         </header>
 
         <div class="container">
             <div class="stories-grid">
-                <!-- Card 11 -->
-                <div class="story-card">
-                    <div class="card-top"><span class="card-icon">🖼️</span><span class="card-tag">Dark Fairytale</span></div>
-                    <h2>The Cursed Portrait of Ravenwood Castle</h2>
-                    <p>They warned Lady Vivienne never to uncover the painting in the west wing after sunset. But at midnight, she heard footsteps coming from inside the frame...</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(11)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=The%20Cursed%20Portrait%20of%20Ravenwood%20Castle" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-11" style="display:none;">
-                        <div class="meta-tag">Dark Fairytale</div>
-                        <div class="meta-title">🖼️ The Cursed Portrait of Ravenwood Castle</div>
-                        <div class="meta-body">For three centuries, the west gallery of Ravenwood Castle remained bolted shut. The keeper handed young Lady Vivienne the key with trembling fingers: "Explore as you please, my lady, but never remove the velvet shroud from the west gallery portrait after sunset."
-
-On her seventh night, rain lashed against the gothic windows. In the silence, Vivienne heard faint fingernails tapping against canvas: Tap. Tap. Tap.
-
-Gripping a silver candlestick, she crept upstairs. Drawn by an irresistible urge, she seized the velvet drape and pulled it down. The painting revealed a breathtaking countess in mourning lace standing before an iron gate.
-
-Vivienne recoiled in horror: the painted figure was clutching the exact silver candlestick Vivienne held in her hand. Suddenly, the painted flame flickered out—and in that instant, Vivienne's own candle died, plunging her into pitch blackness.
-
-A voice whispered in her ear: "Thank you for taking my place."
-
-Vivienne struck a match. The countess was gone from the canvas. In her place stood Vivienne, trapped forever behind the painted iron bars, as the real Countess Lenore slipped into the rainy night, alive once more.</div>
-                    </div>
-                </div>
-
-                <!-- Card 19 -->
-                <div class="story-card">
-                    <div class="card-top"><span class="card-icon">❄️</span><span class="card-tag">Classic Fairytale</span></div>
-                    <h2>The Frost Queen’s Music Box</h2>
-                    <p>Whoever opened the ivory music box heard a melody so sweet their heart froze forever. Clara carried an ember from her home hearth to the ice throne...</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(19)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=The%20Frost%20Queens%20Music%20Box" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-19" style="display:none;">
-                        <div class="meta-tag">Classic Fairytale</div>
-                        <div class="meta-title">❄️ The Frost Queen’s Music Box</div>
-                        <div class="meta-body">An unnatural winter had frozen the kingdom for eighteen months. Legends spoke of the Frost Queen atop Glacier Peak who kept the spirit of Spring trapped inside an ivory music box.
-
-Clara, a woodcutter's daughter, climbed the icy summit carrying only a clay pot with a living ember from her family's hearth. Reaching the ice throne, she stood before the frozen queen.
-
-"Turn back, mortal," the Queen crackled. "Touch the box and the frost melody will stop your heart."
-
-"I did not come to fight," Clara whispered, placing the clay pot at her feet. "I brought you warmth. You froze the world because someone broke your heart, but warmth is not an enemy—it is an invitation to heal."
-
-A single warm tear slipped from the Queen's eye onto the ivory box. The crystal key clicked, playing a glorious song of blooming valleys. The glacier melted into clear streams, Spring returned, and the Queen's icy crown blossomed into forget-me-nots.</div>
-                    </div>
-                </div>
-
-                <!-- Card 1 -->
-                <div class="story-card">
+                <!-- 1 -->
+                <div class="story-card" id="story-card-1">
                     <div class="card-top"><span class="card-icon">🌿</span><span class="card-tag">Fairy Tale</span></div>
-                    <h2>The Weaver and the Whispering Willow</h2>
-                    <p>The dying tree whispered into the wind: 'I have lost my heart-string.' Julian sat at his loom with starlight thread to weave a soul back to life.</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(1)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=The%20Weaver%20and%20the%20Whispering%20Willow" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-1" style="display:none;">
-                        <div class="meta-tag">Fairy Tale</div>
-                        <div class="meta-title">🌿 The Weaver and the Whispering Willow</div>
-                        <div class="meta-body">In a quiet valley hidden between mist-covered hills, old weaver Julian owned an ancient loom carved from enchanted oak. One spring, the sacred weeping willow, which had shaded the grove for centuries, began to wither into pale gray dust.
-
-Kneeling beside its bark, Julian heard the tree whisper: "The melody of the spring stream has frozen. Without song, my roots must die."
-
-Returning to his loom beneath the midnight stars, Julian gathered threads of golden dawn, silver moonlight, and the first dew of April. With gentle hands, he wove the essence of birdsong and rain into a single shimmering tapestry.
-
-At sunrise, he wrapped the tapestry around the willow. A brilliant emerald luminescence surged through the wood. Fresh shoots burst from the boughs, the brook sang with crystal water, and the valley bloomed alive once more—proving that art is a sacred conversation with the world.</div>
-                    </div>
+                    <h2>The Weaver & Whispering Willow</h2>
+                    <p>The dying willow whispered: 'I lost my heart-string.' Julian sat at his loom with starlight thread to weave a soul back to life.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(1)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=The%20Weaver%20and%20the%20Whispering%20Willow" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-1" style="display:none;"><div class="meta-tag">Fairy Tale</div><div class="meta-title">🌿 The Weaver & Whispering Willow</div><div class="meta-body">In a misty valley, weaver Julian owned an ancient loom carved from enchanted oak. When the sacred weeping willow began to wither into pale dust, Julian heard it whisper that the stream's melody had frozen. Sitting beneath the midnight stars, Julian gathered threads of golden dawn, moonlight, and April dew to weave the essence of birdsong. At sunrise, he wrapped the tapestry around the willow; green fire surged through the boughs, the brook sang once more, and the valley bloomed alive.</div></div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="story-card">
+                <!-- 2 -->
+                <div class="story-card" id="story-card-2">
                     <div class="card-top"><span class="card-icon">🔭</span><span class="card-tag">Dark Tale</span></div>
                     <h2>The Star-Gazer's Secret</h2>
-                    <p>For 40 years, he tracked an obsidian star missing from every map. Tonight, it pulsed with violet fire, heralding the erasure of human memory.</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(2)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=The%20Star%20Gazers%20Secret" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-2" style="display:none;">
-                        <div class="meta-tag">Dark Tale</div>
-                        <div class="meta-title">🔭 The Star-Gazer's Secret</div>
-                        <div class="meta-body">High upon the jagged cliffs, Professor Alistair watched the heavens through his brass telescope. For forty years, he kept secret charts of the 'Sovereign of Ashes'—a dark star absent from celestial maps, said to bring an eclipse of all human memories whenever a comet crossed its path.
-
-Tonight, the obsidian star flared violet. A shadow began creeping over the slumbering village below.
-
-Alistair acted without hesitation. Taking an ancient compass and midnight ink, he inscribed a protective talisman on vellum, pouring all his love and cherished memories into each sacred rune.
-
-He placed the glowing parchment into the telescope's focus. A beam of emerald light pierced the night clouds, shattering the comet's shadow. The village woke in peace, never knowing a silent stargazer had saved the world's memories.</div>
-                    </div>
+                    <p>For 40 years, he tracked an obsidian star missing from maps. Tonight, it pulsed violet, heralding the erasure of human memory.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(2)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=The%20Star%20Gazers%20Secret" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-2" style="display:none;"><div class="meta-tag">Dark Tale</div><div class="meta-title">🔭 The Star-Gazer's Secret</div><div class="meta-body">Upon jagged cliffs, Professor Alistair kept secret charts of the Sovereign of Ashes—a dark star capable of devouring human memory whenever a comet passed. As the shadow crept toward the slumbering town, Alistair inscribed an ancient talisman using all his cherished memories. Placing the parchment into his brass telescope, a beam of emerald starlight shattered the shadow, saving the village's memories while the world slept unaware.</div></div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="story-card">
+                <!-- 3 -->
+                <div class="story-card" id="story-card-3">
                     <div class="card-top"><span class="card-icon">🕰️</span><span class="card-tag">Classic Tale</span></div>
                     <h2>The Clockmaker's Heart</h2>
-                    <p>A weeping girl brought him a frozen silver locket. To make it tick again, the master horologist had to sacrifice his own most precious memory.</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(3)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=The%20Clockmakers%20Heart" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-3" style="display:none;">
-                        <div class="meta-tag">Classic Tale</div>
-                        <div class="meta-title">🕰️ The Clockmaker's Heart</div>
-                        <div class="meta-body">Master Eldridge crafted the finest timepieces in the city, yet his own days ticked by in cold solitude. One snowy night, a trembling girl knocked upon his door holding a broken silver locket.
-
-"Sir, it belonged to my mother," she wept. "It stopped the hour she fell ill. The doctors say only hope can restore her, and I thought if it chimed again, she might wake."
-
-Eldridge examined the frozen gears. The mainspring was shattered; only an escapement forged with selfless love could revive it. Without hesitation, Eldridge melted down his own cherished heirloom—a mechanical butterfly gifted by his late wife decades ago.
-
-He worked until dawn, shaping a new cog. When the locket ticked and chimed its sweet melody, the girl smiled through tears. As she ran home, Eldridge noticed that his quiet workshop felt empty no longer—his own heart had begun to beat again.</div>
-                    </div>
+                    <p>A weeping girl brought a broken silver locket. To make it tick again, the master horologist had to sacrifice his rarest heirloom.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(3)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=The%20Clockmakers%20Heart" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-3" style="display:none;"><div class="meta-tag">Classic Tale</div><div class="meta-title">🕰️ The Clockmaker's Heart</div><div class="meta-body">Master Eldridge lived in cold solitude until a shivering girl brought him a stopped locket belonging to her ailing mother. The mainspring was ruined; only an escapement made with true love could revive it. Eldridge melted down a silver mechanical butterfly left by his late wife. When the locket chimed, the girl ran home smiling, and Eldridge felt his own long-frozen heart beating with warmth again.</div></div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="story-card">
+                <!-- 4 -->
+                <div class="story-card" id="story-card-4">
                     <div class="card-top"><span class="card-icon">👑</span><span class="card-tag">Princess Tale</span></div>
-                    <h2>Princess Amara & the Midnight Owl</h2>
-                    <p>A snow-white owl dropped a sealed lavender letter onto her balcony: 'The crown you wear is hollow until you brave the haunted woods alone.'</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(4)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=Princess%20Amara" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-4" style="display:none;">
-                        <div class="meta-tag">Princess Tale</div>
-                        <div class="meta-title">👑 Princess Amara & the Midnight Owl</div>
-                        <div class="meta-body">Princess Amara of the Silver Hollow cared little for courtly balls. Her joy lay in wandering the royal gardens after twilight when moon-lilies bloomed.
-
-One evening, a white owl with sapphire eyes landed on her balcony, bearing an envelope sealed in lavender silk. The message spoke of a forgotten grove where ancient guardians were fading under a shadow of despair.
-
-Wrapping herself in a velvet cloak, Amara followed the owl into the deep forest. At the grove's center lay a weeping dryad pinned beneath fallen silver branches. Amara used no weapons; she spoke gentle words of comfort and carefully cleared the debris with bare hands.
-
-As the dryad was freed, a shimmering azure mist filled the air. The owl transformed into a spirit guardian, bowing deeply: "True royalty lies not in crowns, but in courage born of kindness."</div>
-                    </div>
+                    <h2>Princess Amara & Midnight Owl</h2>
+                    <p>A white owl dropped a sealed lavender letter: 'Your crown is hollow until you brave the haunted woods alone.'</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(4)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Princess%20Amara" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-4" style="display:none;"><div class="meta-tag">Princess Tale</div><div class="meta-title">👑 Princess Amara & Midnight Owl</div><div class="meta-body">Princess Amara cared little for royal banquets. Following a sapphire-eyed owl into the deep forest, she discovered an ancient dryad trapped beneath fallen silver boughs. With gentleness and bare hands, Amara cleared the wreckage. The owl transformed into a spirit guardian, bowing deeply to declare that royalty is not forged in crowns, but in courage born of mercy.</div></div>
                 </div>
 
-                <!-- Card 5 -->
-                <div class="story-card">
+                <!-- 5 -->
+                <div class="story-card" id="story-card-5">
                     <div class="card-top"><span class="card-icon">🏮</span><span class="card-tag">Fairy Tale</span></div>
-                    <h2>The Girl and the Firefly Lantern</h2>
-                    <p>Her woven lantern held thousands of golden fireflies. But during the great autumn gale, she had to choose: save herself or shelter the enchanted swarm.</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(5)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=Firefly%20Lantern" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-5" style="display:none;">
-                        <div class="meta-tag">Fairy Tale</div>
-                        <div class="meta-title">🏮 The Girl and the Firefly Lantern</div>
-                        <div class="meta-body">At the edge of the twilight hills, young Mira wove bamboo lanterns painted with watercolors of cherry blossoms. On moonless nights, hundreds of glowing fireflies gathered around her, filling her lantern with radiant emerald light.
-
-This light was miraculous: it cleared dense fog and dissolved fear from the hearts of lost wanderers.
-
-One night, a savage storm tore through the valley. Freezing rain threatened to extinguish the fragile fireflies. Mira pulled off her warm woolen coat and wrapped it tightly around the lantern, enduring the biting wind to protect them.
-
-Touched by her pure love, the fireflies combined their magic, casting a warm dome of golden light that shielded Mira entirely from the storm. Ever since, her lantern has guided every dreamer safely through the dark.</div>
-                    </div>
+                    <h2>The Firefly Lantern</h2>
+                    <p>Her lantern held thousands of golden fireflies. When the winter gale struck, she chose to freeze rather than let the swarm die.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(5)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=The%20Firefly%20Lantern" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-5" style="display:none;"><div class="meta-tag">Fairy Tale</div><div class="meta-title">🏮 The Firefly Lantern</div><div class="meta-body">Young Mira wove bamboo lanterns that attracted magical fireflies capable of banishing fear. When a freezing blizzard threatened to kill the fragile swarm, Mira wrapped her own woolen coat tightly around the lantern. Touched by her sacrifice, the fireflies ignited a dome of golden warmth that shielded Mira through the storm, turning her into a legendary guardian of the twilight hills.</div></div>
                 </div>
 
-                <!-- Card 12 -->
-                <div class="story-card">
+                <!-- 6 -->
+                <div class="story-card" id="story-card-6">
+                    <div class="card-top"><span class="card-icon">🌙</span><span class="card-tag">Classic Poem</span></div>
+                    <h2>The Moonbeam Weaver</h2>
+                    <p>Whoever slept beneath her gossamer cloak forgot sorrow. Yet the weaver herself had never once closed her eyes to sleep.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(6)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=The%20Moonbeam%20Weaver" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-6" style="display:none;"><div class="meta-tag">Classic Poem</div><div class="meta-title">🌙 The Moonbeam Weaver</div><div class="meta-body">Beside Lake Mirabell, Evelyn spun moonbeams into shimmering sleep-shrouds. Those suffering from grief found peaceful dreams beneath her work. Though she spent every night awake watching over the stars, her heart was filled with boundless peace knowing her starlight gave rest to weary hearts across the earth.</div></div>
+                </div>
+
+                <!-- 7 -->
+                <div class="story-card" id="story-card-7">
+                    <div class="card-top"><span class="card-icon">🧚‍♀️</span><span class="card-tag">Fairy Tale</span></div>
+                    <h2>The Moonlight Fairy & Butterfly</h2>
+                    <p>A trapped golden butterfly whispered: 'I hold the dreams of every weeping child.' Aria raised her crystal wand.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(7)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Moonlight%20Fairy" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-7" style="display:none;"><div class="meta-tag">Fairy Tale</div><div class="meta-title">🧚‍♀️ The Moonlight Fairy & Butterfly</div><div class="meta-body">Fairy Aria discovered Solara, the Dream Spinner butterfly, trapped in an ancient web. With a touch of fairy dust, she transformed the sticky threads into soft ribbons. Solara soared into the sky, scattering golden stardust that ensured sweet dreams for every sleeping child across the kingdom.</div></div>
+                </div>
+
+                <!-- 8 -->
+                <div class="story-card" id="story-card-8">
+                    <div class="card-top"><span class="card-icon">🏰</span><span class="card-tag">Princess Tale</span></div>
+                    <h2>The Whispering River</h2>
+                    <p>The sacred river froze to solid stone. To melt its icy heart, Princess Elyra had to offer her grandmother's memory vial.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(8)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Whispering%20River" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-8" style="display:none;"><div class="meta-tag">Princess Tale</div><div class="meta-title">🏰 The Whispering River</div><div class="meta-body">When the great valley river froze solid, famine threatened Northaven. Princess Elyra walked out onto the ice and listened to the river's sorrow. Uncorking her most precious heirloom—a crystal vial containing tears of pure joy—she poured it onto the frost. The ice shattered into emerald currents, singing life back into the valley's soil.</div></div>
+                </div>
+
+                <!-- 9 -->
+                <div class="story-card" id="story-card-9">
+                    <div class="card-top"><span class="card-icon">🦄</span><span class="card-tag">Fantasy Tale</span></div>
+                    <h2>The Starflower Unicorn</h2>
+                    <p>Its ivory horn could heal anything. But to save the dying valley Starflower, Celestia had to surrender her rainbow colors forever.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(9)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Starflower%20Unicorn" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-9" style="display:none;"><div class="meta-tag">Fantasy Tale</div><div class="meta-title">🦄 The Starflower Unicorn</div><div class="meta-body">In the sacred Glade of Solitude, unicorn Celestia found the world's last Starflower withering from winter frost. Bowing her head, she pressed her glowing horn against its roots, transferring all the vibrant colors of her mane into the blossom. The flower erupted into golden seeds, and though Celestia became snowy white, her light shone brighter than the stars.</div></div>
+                </div>
+
+                <!-- 10 -->
+                <div class="story-card" id="story-card-10">
+                    <div class="card-top"><span class="card-icon">🕯️</span><span class="card-tag">Bedtime Story</span></div>
+                    <h2>The Candle's Golden Whisper</h2>
+                    <p>'Do not fear the dark when my flame dies,' the honey candle whispered. 'Darkness is the velvet blanket that heals the world.'</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(10)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Candles%20Whisper" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-10" style="display:none;"><div class="meta-tag">Bedtime Story</div><div class="meta-title">🕯️ The Candle's Golden Whisper</div><div class="meta-body">Beside a cozy bed, a small beeswax candle flickered softly. It whispered comfortingly to the restless child that darkness is simply the quiet stillness where dreams grow. With a gentle spiral of clover-scented smoke, the flame dissolved, leaving behind a night of peaceful, untroubled slumber.</div></div>
+                </div>
+
+                <!-- 11 -->
+                <div class="story-card" id="story-card-11">
+                    <div class="card-top"><span class="card-icon">🖼️</span><span class="card-tag">Dark Fairytale</span></div>
+                    <h2>The Cursed Portrait</h2>
+                    <p>They warned Vivienne never to uncover the painting after sunset. At midnight, footsteps came from inside the canvas...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(11)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Cursed%20Portrait" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-11" style="display:none;"><div class="meta-tag">Dark Fairytale</div><div class="meta-title">🖼️ The Cursed Portrait</div><div class="meta-body">In Ravenwood Castle, Lady Vivienne unveiled the forbidden portrait at midnight. The painted countess held the exact silver candlestick Vivienne carried. Suddenly, the candle died, and a voice whispered: 'Thank you for taking my place.' When Vivienne struck a match, she found herself painted behind iron bars, while the countess walked free into the storm.</div></div>
+                </div>
+
+                     <!-- 12 -->
+               <div class="story-card" id="story-card-12">
                     <div class="card-top"><span class="card-icon">⏳</span><span class="card-tag">Enchanted Mystery</span></div>
-                    <h2>The Clock That Stole the 13th Hour</h2>
-                    <p>Every clock strikes twelve. But in Master Klaus's attic, the bone grandfather clock struck thirteen—and her shadow stood upright on its own...</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(12)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=The%2013th%20Hour" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-12" style="display:none;">
-                        <div class="meta-tag">Enchanted Mystery</div>
-                        <div class="meta-title">⏳ The Clock That Stole the 13th Hour</div>
-                        <div class="meta-body">In the clockmaker's town of Veldor, apprentice Clara inherited an attic clock carved from black walnut and bone, bearing thirteen golden numerals. On his deathbed, her master warned: "If the hands ever reach thirteen, run."
-
-During a moonless midnight, every ticking clock in the shop died into silence. From the attic came a deep chime: Gong... twelve... thirteen!
-
-Gravity warped. Clara's shadow peeled itself off the floor, rising upright with glowing white eyes. Around the room, shadows of furniture detached like living silk: "The Thirteenth Hour is ours, mortal!"
-
-Remembering the ancient rule of horology—that no spell can survive without mechanical balance—Clara raced upstairs while icy hands clawed at her shoulders. Just as the hand hit the thirteenth stroke, she jammed a steel tuning fork into the escapement gear.
-
-The clock face shattered into silver dust. The shadows snapped back onto the floor, pinned harmlessly beneath the furniture. Dawn broke over the roofs, yet on Clara's left palm, a faint tattoo of the numeral XIII remained, ticking softly beneath her pulse.</div>
-                    </div>
+                    <h2>The Thirteenth Hour Clock</h2>
+                    <p>Clocks strike twelve. But in Master Klaus's attic, the grandfather clock struck thirteen—and her shadow stood upright...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(12)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=13th%20Hour" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-12" style="display:none;"><div class="meta-tag">Enchanted Mystery</div><div class="meta-title">⏳ The Thirteenth Hour Clock</div><div class="meta-body">Apprentice Clara inherited a clock with thirteen bone numerals. At midnight, it struck thirteen; shadows peeled off the floor with glowing eyes. Clara jammed a steel tuning fork into the escapement gear, shattering the cursed clock and restoring gravity, though a faint Roman XIII remained ticking beneath her palm.</div></div>
                 </div>
 
-                <!-- Card 13 -->
-                <div class="story-card">
+                <!-- 13 -->
+                <div class="story-card" id="story-card-13">
                     <div class="card-top"><span class="card-icon">🪞</span><span class="card-tag">Suspense Tale</span></div>
-                    <h2>The Mirror That Reflected Tomorrow</h2>
-                    <p>Elena bought an antique mirror, but it didn't reflect her face. It showed her lying unconscious in a wet alley 24 hours in the future...</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(13)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=Mirror%20Tomorrow" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-13" style="display:none;">
-                        <div class="meta-tag">Suspense Tale</div>
-                        <div class="meta-title">🪞 The Mirror That Reflected Tomorrow</div>
-                        <div class="meta-body">In a Prague alley, Elena found an antique mirror framed with serpent scales. When she wiped the glass in her apartment, her heart stopped: the reflection did not show her silk dress, but a torn dark coat soaked in rain, clutching a crimson leather envelope while a shadowed stranger loomed behind her.
-
-The next evening at 6:00 PM, an unexpected downpour drenched the streets. A masked courier thrust the exact crimson envelope into her hands before vanishing into the mist.
-
-Elena looked into the mirror again. The vision had shifted: it showed her being ambushed on her own rooftop. Realizing the mirror showed tomorrow's fate to give her a chance to rewrite it, Elena climbed to the roof, carrying the mirror in her bag.
-
-When the footsteps cornered her against the ledge, she thrust the mirror forward like a shield. When the pursuer caught sight of his own doom reflected in the glass—an image of the rusted iron ledge collapsing beneath him—he froze in terror. Elena slammed the heavy roof door, broke the timeline, and cast the cursed glass into the river below.</div>
-                    </div>
+                    <h2>The Mirror of Tomorrow</h2>
+                    <p>Elena bought an antique mirror, but it didn't reflect her face. It showed her lying unconscious 24 hours in the future...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(13)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Mirror%20Tomorrow" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-13" style="display:none;"><div class="meta-tag">Suspense Tale</div><div class="meta-title">🪞 The Mirror of Tomorrow</div><div class="meta-body">In Prague, Elena found a mirror framed in snake scales showing future disasters. Seeing her ambush on the rooftop, Elena brought the mirror to meet her stalker. When the attacker saw his own doom reflected in the glass, he panicked and retreated, allowing Elena to shatter the timeline and throw the glass into the river.</div></div>
                 </div>
 
-                <!-- Card 15 -->
-                <div class="story-card">
+                <!-- 14 -->
+                <div class="story-card" id="story-card-14">
+                    <div class="card-top"><span class="card-icon">🗝️</span><span class="card-tag">Dark Fairytale</span></div>
+                    <h2>The Dollmaker’s Secret</h2>
+                    <p>Whenever a girl vanished, a lifelike porcelain doll appeared in his shop window. Rosalind unlocked the backroom door...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(14)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Dollmaker" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-14" style="display:none;"><div class="meta-tag">Dark Fairytale</div><div class="meta-title">🗝️ The Dollmaker’s Secret</div><div class="meta-body">Apprentice Rosalind discovered the master dollmaker had trapped the souls of sick children inside porcelain bodies to grant them immortality. Breaking the soul jars, Rosalind freed the spirits to heaven, but in her arms, the doll resembling her lost sister blinked and fell into natural, mortal sleep.</div></div>
+                </div>
+
+                <!-- 15 -->
+                <div class="story-card" id="story-card-15">
                     <div class="card-top"><span class="card-icon">🥀</span><span class="card-tag">Dark Romance</span></div>
-                    <h2>The Obsidian Rose of Midnight Hollow</h2>
-                    <p>Whoever plucked the black rose gained limitless gold. But the beast who guarded the garden demanded a payment far worse than blood...</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(15)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=Obsidian%20Rose" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-15" style="display:none;">
-                        <div class="meta-tag">Dark Romance</div>
-                        <div class="meta-title">🥀 The Obsidian Rose of Midnight Hollow</div>
-                        <div class="meta-body">In a thorn-choked gorge bloomed the Obsidian Rose, whose midnight petals dripped with dew that turned to liquid diamonds. Scores of knights had descended seeking wealth, never to return.
-
-Julian, a young scholar drowning in debt, entered the gorge with only a water flask. Before the pedestal stepped a creature in a cracked black porcelain mask and raven talons: "Take the rose, boy. It buys kingdoms. But in exchange, you must surrender all sorrow—you shall never weep for any living creature again."
-
-Julian realized the grim truth: the Beast was a former mortal whose unfeeling heart had trapped him in eternal loneliness. Julian stepped past the rose and poured his water flask onto the dry roots.
-
-"Keep your gold," Julian said gently. "I would rather weep with those I love than sit in a golden palace with a heart of stone."
-
-A shudder broke through the hollow. The mask shattered into dust. The Beast wept his first human tears in five hundred years as the rose dissolved into sunlight, releasing them both from the curse.</div>
-                    </div>
+                    <h2>The Obsidian Rose</h2>
+                    <p>Whoever plucked the black rose gained limitless gold. But the beast demanded a payment far worse than blood...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(15)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Obsidian%20Rose" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-15" style="display:none;"><div class="meta-tag">Dark Romance</div><div class="meta-title">🥀 The Obsidian Rose</div><div class="meta-body">In a thorn ravine bloomed the Obsidian Rose. The masked beast offered it to Julian in exchange for surrendering all grief and tears forever. Julian refused, watering the dying roots instead: 'I would rather weep than live with a stone heart.' The beast wept his first tears in centuries, shattering the ancient curse.</div></div>
                 </div>
 
-                <!-- Card 20 -->
-                <div class="story-card">
+                <!-- 16 -->
+                <div class="story-card" id="story-card-16">
+                    <div class="card-top"><span class="card-icon">🕯️</span><span class="card-tag">Dark Fairytale</span></div>
+                    <h2>The Phantom Lighthouse</h2>
+                    <p>Sailors were warned never to steer toward the blue light on the cliff. But tonight the main lighthouse died in a storm...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(16)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Phantom%20Light" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-16" style="display:none;"><div class="meta-tag">Dark Fairytale</div><div class="meta-title">🕯️ The Phantom Lighthouse</div><div class="meta-body">On Foggy Shore, a ghost woman’s longing for her lost father lured ships onto reefs. Thomas climbed the cliffs and offered his lantern: 'Help me save those who still live.' The ghost merged with his brass lantern, sending a sapphire beacon that guided a sinking ship to safe harbor.</div></div>
+                </div>
+
+                <!-- 17 -->
+                <div class="story-card" id="story-card-17">
+                    <div class="card-top"><span class="card-icon">🩰</span><span class="card-tag">Enchanted Mystery</span></div>
+                    <h2>The Obsidian Ballroom</h2>
+                    <p>An invisible ballroom appears every 4 years. If you drink the pomegranate wine, you can never return to the living...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(17)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Obsidian%20Ball" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-17" style="display:none;"><div class="meta-tag">Enchanted Mystery</div><div class="meta-title">🩰 The Obsidian Ballroom</div><div class="meta-body">In Blackwood ruins, phantom music played on leap night. Finding her brother trapped in a trance, Seraphina refused the poisoned chalice and played their mother's childhood lullaby on her violin. The song shattered the dark illusion, allowing them to escape back into the sunlit morning.</div></div>
+                </div>
+
+                <!-- 18 -->
+                <div class="story-card" id="story-card-18">
+                    <div class="card-top"><span class="card-icon">🗝️</span><span class="card-tag">Dark Fairytale</span></div>
+                    <h2>The Book of Sins</h2>
+                    <p>He opened a blank vellum book. Fresh blood-red ink began scratching out what he was thinking in his head right that second...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(18)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Book%20of%20Sins" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-18" style="display:none;"><div class="meta-tag">Dark Fairytale</div><div class="meta-title">🗝️ The Book of Sins</div><div class="meta-body">Archivist Gabriel found an iron-locked book that revealed his deepest past betrayal. Terrorized by its phantom writing, Gabriel chose to confess his deceit before the royal council at dawn. The book dissolved into ash, freeing his conscience from thirty years of guilt.</div></div>
+                </div>
+
+                <!-- 19 -->
+                <div class="story-card" id="story-card-19">
+                    <div class="card-top"><span class="card-icon">❄️</span><span class="card-tag">Classic Fairytale</span></div>
+                    <h2>The Frost Queen’s Music Box</h2>
+                    <p>Whoever touched the ivory box had their heart frozen. Clara carried a living hearth ember up to the glacier throne...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(19)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Frost%20Queen" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-19" style="display:none;"><div class="meta-tag">Classic Fairytale</div><div class="meta-title">❄️ The Frost Queen’s Music Box</div><div class="meta-body">Winter held Northaven frozen for 18 months. Woodcutter’s daughter Clara climbed Glacier Peak carrying a clay pot containing a living ember. Placing it at the Frost Queen’s feet, Clara offered warmth, not war. The Queen’s warm tear unlocked the ivory music box, releasing the spirit of Spring across the blooming realm.</div></div>
+                </div>
+
+                <!-- 20 -->
+                <div class="story-card" id="story-card-20">
                     <div class="card-top"><span class="card-icon">🗝️</span><span class="card-tag">Dark Fairytale</span></div>
                     <h2>The Secret of Room 107</h2>
-                    <p>The hotel only had 106 rooms. But the ancient concierge handed him key 107 and whispered: 'Whatever you do, do not knock on the mirror between 106 and 108.'</p>
-                    <div class="card-actions">
-                        <button type="button" class="read-btn" onclick="showStory(20)">Read Story ✨</button>
-                        <a href="https://pinterest.com/pin/create/button/?description=Room%20107" target="_blank" class="pin-save-btn">📌 Save</a>
-                    </div>
-                    <div id="full-text-20" style="display:none;">
-                        <div class="meta-tag">Dark Fairytale</div>
-                        <div class="meta-title">🗝️ The Secret of Room 107</div>
-                        <div class="meta-body">The Grand Hotel in Vienna had 106 rooms on its blueprints. Yet on a stormy night, the concierge handed Arthur a brass key stamped 107: "Take the service corridor, and never knock on the mirror between 106 and 108."
+                    <p>The hotel had 106 rooms. The concierge handed Arthur key 107: 'Never knock on the mirror between 106 and 108.'</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(20)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Room%20107" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-20" style="display:none;"><div class="meta-tag">Dark Fairytale</div><div class="meta-title">🗝️ The Secret of Room 107</div><div class="meta-body">Arthur unlocked the hidden dimension of Room 107. Discovering a ledger of visitors who never returned, Arthur realized the room fed on human memories. Throwing the ledger into the fireplace, Arthur dove through the closing threshold just as the mirror shattered into dust.</div></div>
+                </div>
 
-Curious, Arthur touched the mirror frame; it swung inward into a luxurious private suite with a roaring fire. But when he opened the guest ledger, every visitor dating back a century was listed with the note: "Entered. Did not leave."
+                <!-- 21 -->
+                <div class="story-card" id="story-card-21">
+                    <div class="card-top"><span class="card-icon">❄️🐛</span><span class="card-tag">Emotional Fairytale</span></div>
+                    <h2>The Winter Fairy & Last Snow-Worm</h2>
+                    <p>Born from frozen tears, the tiny snow-worm held the warmth of a falling star. When spring arrived, love demanded the ultimate sacrifice...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(21)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Snow%20Worm" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-21" style="display:none;"><div class="meta-tag">Emotional Fairytale</div><div class="meta-title">❄️🐛 The Winter Fairy & Last Snow-Worm</div><div class="meta-body">On the Silent Glacier, fairy Lumina befriended Yul, the last crystal snow-worm carrying an inner ember of starlight. When the spring thaw threatened the mountain village below, Yul sacrificed his fragile body into the melting ice, turning the runoff into glowing starlight that nourished the valley's flowers forever.</div></div>
+                </div>
 
-The wall clock began ticking backward as the room began devouring his memories, erasing his mother's face from his mind. Realizing Room 107 was a pocket dimension feeding on trapped souls, Arthur seized the leather ledger and hurled it into the fireplace.
+                <!-- 22 -->
+                <div class="story-card" id="story-card-22">
+                    <div class="card-top"><span class="card-icon">🦊</span><span class="card-tag">Fairy Tale</span></div>
+                    <h2>The Fox & the Starlight Thread</h2>
+                    <p>He pulled a silver thread from the Northern Lights. But as the night sky began to unravel, a baby bird shivered in the dark...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(22)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Starlight%20Fox" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-22" style="display:none;"><div class="meta-tag">Fairy Tale</div><div class="meta-title">🦊 The Fox & the Starlight Thread</div><div class="meta-body">Freezing in his den, fox Kitsune pulled a dangling thread of aurora borealis. When the sky began unraveling, Kitsune wrapped the starlight thread around a shivering baby owl's nest instead of himself. The Sky Guardian healed the heavens and blessed Kitsune's burrow with an eternal, gentle hearth of starlight.</div></div>
+                </div>
 
-The mahogany walls screamed and warped. Arthur lunged through the collapsing doorway just as the mirror shattered into glittering shards on the fourth-floor corridor. When he stood up among the startled guests, the brass key in his hand had melted away forever.</div>
-                    </div>
+                <!-- 23 -->
+                <div class="story-card" id="story-card-23">
+                    <div class="card-top"><span class="card-icon">🌊</span><span class="card-tag">Dark Fairytale</span></div>
+                    <h2>The Mermaid’s Silent Bargain</h2>
+                    <p>She traded her singing voice for mortal legs. But every sunset stole one precious memory of her mother's face...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(23)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Mermaid%20Bargain" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-23" style="display:none;"><div class="meta-tag">Dark Fairytale</div><div class="meta-title">🌊 The Mermaid’s Silent Bargain</div><div class="meta-body">Mermaid Nerida traded her voice to walk upon land, but the sea witch's curse began erasing her memories of family. Refusing to lose herself for an illusion, Nerida dove back into the deep before her final memory faded, regaining her voice and becoming the protector of ocean secrets.</div></div>
+                </div>
+
+                 <!-- 24 -->
+                <div class="story-card" id="story-card-24">
+                    <div class="card-top"><span class="card-icon">🍎</span><span class="card-tag">Classic Tale</span></div>
+                    <h2>The Glass Apple of Eternity</h2>
+                    <p>One bite granted timeless youth, but turned your shadow into a weeping ghost. Princess Liana found the forbidden orchard...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(24)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Glass%20Apple" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-24" style="display:none;"><div class="meta-tag">Classic Tale</div><div class="meta-title">🍎 The Glass Apple of Eternity</div><div class="meta-body">Behind the attic mirror lay the Orchard of Glass. Biting a crystal apple gave Princess Liana eternal youth, but detached her shadow, which wept all her unexpressed sorrow. Horrified by the emptiness of grief-free immortality, Liana wept over her shadow, breaking the spell and returning to mortal warmth.</div></div>
+                </div>
+
+                <!-- 25 -->
+                <div class="story-card" id="story-card-25">
+                    <div class="card-top"><span class="card-icon">🦁</span><span class="card-tag">Fantasy Tale</span></div>
+                    <h2>The Bronze Lion Who Wept Gold</h2>
+                    <p>Guarding the gates for 1,000 years, the metal beast had never stirred until a blind girl offered him yellow wildflowers.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(25)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Bronze%20Lion" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-25" style="display:none;"><div class="meta-tag">Fantasy Tale</div><div class="meta-title">🦁 The Bronze Lion Who Wept Gold</div><div class="meta-body">For a millennium, the giant bronze lion stood frozen before the Sun Temple. When a little blind girl placed sweet daisies behind its cold ear and called it a friend, tears of molten gold flowed from its eyes. The golden tears restored the girl's sight, while the lion found life in compassion.</div></div>
+                </div>
+
+                <!-- 26 -->
+                <div class="story-card" id="story-card-26">
+                    <div class="card-top"><span class="card-icon">🦉</span><span class="card-tag">Enchanted Mystery</span></div>
+                    <h2>The Librarian of Lost Tomes</h2>
+                    <p>Every book in the underground library was written by people who gave up. The owl offered him a quill dipped in starlight...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(26)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Lost%20Tomes" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-26" style="display:none;"><div class="meta-tag">Enchanted Mystery</div><div class="meta-title">🦉 The Librarian of Lost Tomes</div><div class="meta-body">Beneath Oxford's streets, Julian discovered a library of abandoned novels. Finding his own childhood manuscript, an owl handed him a feather quill: 'A story is never dead until you stop believing.' Julian penned the ending, watching the book fly up to illuminate the cavern vault.</div></div>
+                </div>
+
+                <!-- 27 -->
+                <div class="story-card" id="story-card-27">
+                    <div class="card-top"><span class="card-icon">🍄</span><span class="card-tag">Fairy Tale</span></div>
+                    <h2>The Moon-Cake Goblin</h2>
+                    <p>Villagers feared the old goblin in the stump. But every sunrise, his pastries cured the deepest heartaches of the town.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(27)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Mooncake%20Goblin" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-27" style="display:none;"><div class="meta-tag">Fairy Tale</div><div class="meta-title">🍄 The Moon-Cake Goblin</div><div class="meta-body">Old Bramble was shunned as a monster, yet every morning he left moon-cakes kneaded with rose flour on doorsteps. A curious girl discovered he baked them to heal the secret grief of those who hated him: 'Those who judge others are usually hurting the most.' The village learned to bake alongside him.</div></div>
+                </div>
+
+                <!-- 28 -->
+                <div class="story-card" id="story-card-28">
+                    <div class="card-top"><span class="card-icon">🧵</span><span class="card-tag">Dark Fairytale</span></div>
+                    <h2>The Tailor of Forgotten Whispers</h2>
+                    <p>He sewed heavy coats from unsaid apologies. Whoever wore his garments could hear every word their loved ones never spoke...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(28)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Tailor%20Whispers" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-28" style="display:none;"><div class="meta-tag">Dark Fairytale</div><div class="meta-title">🧵 The Tailor of Forgotten Whispers</div><div class="meta-body">Master Alva wove coats from the heavy silence of parted lovers. When a bitter merchant bought a charcoal coat, gentle whispers of 'I am sorry' and 'I miss you' echoed in his ears. Overwhelmed by forgiveness, he ran into the snowy street to make peace with all he had hurt.</div></div>
+                </div>
+
+                <!-- 29 -->
+                <div class="story-card" id="story-card-29">
+                    <div class="card-top"><span class="card-icon">🪷</span><span class="card-tag">Classic Tale</span></div>
+                    <h2>The Midnight Lotus</h2>
+                    <p>The obsidian lotus bloomed once a century during a red eclipse. Its single drop of dew gave power to speak with the wind.</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(29)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Midnight%20Lotus" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-29" style="display:none;"><div class="meta-tag">Classic Tale</div><div class="meta-title">🪷 The Midnight Lotus</div><div class="meta-body">Novice monk Tenzin waited seven days for the sacred eclipse bloom. When the single drop of pearl dew appeared, he did not drink it for power, but poured it onto a dying cherry tree. The blossoms exploded into spring in midwinter, and the wind sang gratitude to the entire mountain.</div></div>
+                </div>
+
+                <!-- 30 -->
+                <div class="story-card" id="story-card-30">
+                    <div class="card-top"><span class="card-icon">🧝‍♀️</span><span class="card-tag">Fantasy Tale</span></div>
+                    <h2>The Star-Catcher’s Skiff</h2>
+                    <p>He sailed the cloud sea dipping a silk net for stray moonbeams. Tonight, the largest shooting star fell directly into his boat...</p>
+                    <div class="card-actions"><button type="button" class="read-btn" onclick="showStory(30)">Read Story ✨</button><a href="https://pinterest.com/pin/create/button/?description=Star%20Catcher" target="_blank" class="pin-save-btn">📌 Save</a></div>
+                    <div id="full-text-30" style="display:none;"><div class="meta-tag">Fantasy Tale</div><div class="meta-title">🧝‍♀️ The Star-Catcher’s Skiff</div><div class="meta-body">Old Barnaby spent his life in a wooden skiff catching fallen stars in a silk net. One night, a blazing star crashed into his boat—not a meteorite, but a shivering child of starlight. Wrapping his wool coat around her, Barnaby smiled: 'I chased stars my whole life, and the brightest one chose my boat.'</div></div>
                 </div>
             </div>
         </div>
@@ -392,16 +356,13 @@ The mahogany walls screamed and warped. Arthur lunged through the collapsing doo
         function showStory(id) {
             var textElem = document.getElementById('full-text-' + id);
             if (!textElem) return;
-
             var tag = textElem.querySelector('.meta-tag').textContent;
             var title = textElem.querySelector('.meta-title').textContent;
             var body = textElem.querySelector('.meta-body').textContent;
-
             document.getElementById('readerTag').textContent = tag;
             document.getElementById('readerTitle').textContent = title;
             document.getElementById('readerBody').textContent = body;
             document.getElementById('readerPinBtn').href = 'https://pinterest.com/pin/create/button/?description=' + encodeURIComponent(title);
-
             document.getElementById('homeView').style.display = 'none';
             document.getElementById('readerView').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
